@@ -13,6 +13,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def create
   #   super
   # end
+  # POST /resource
+  def create
+    p "注册",params
+    @user = User.new(sign_up_params)
+    if verify_rucaptcha?(@user) && @user.save
+      # UserMailer.welcome_email(@user).deliver
+      # sign_in @user
+      # redirect_to root_path, notice: '注册邮件已经发往你的邮箱  请注意接收'
+      redirect_to root_path, notice: '注册成功欢迎访问'
+    else
+      p @user.errors
+      render 'devise/registrations/new'
+    end
+  end
+
+
 
   # GET /resource/edit
   # def edit
@@ -59,4 +75,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  private 
+  def registration_params
+    params.require(:user).permit(:email,:password,:password_confirmation)
+  end
 end

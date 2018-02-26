@@ -2,13 +2,96 @@
 <html>
   <head>
     <title>HJFcoding</title>
+    <%#= csrf_meta_tags %>
+    <%#= stylesheet_link_tag  '/assets/bootstrap/bootstrap.min'%>
+    <%#= stylesheet_link_tag  '/assets/scaffolds'%>  <!-- 这个是排版的样式  最好限定排版用 -->
+    <%#= javascript_include_tag "application",'data-turbolinks-track': 'reload' %>
+    <%#= javascript_include_tag "/assets/tasks","/assets/user" %>
+    <!-- 
+	<script src="/assets/jquery/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/assets/bootstrap/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+     -->
+    
+	<!-- 简洁写法   -->
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- Uncaught Error: Bootstrap's JavaScript requires jQuery. jQuery must be included before Bootstrap's JavaScript -->
+    <script src="/assets/jquery/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application'%>  <!-- react支持 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
   </head>
 
-  <body>
-    <%= yield %>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse"
+          data-target="#example-navbar-collapse">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">HJFcoding</a>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active" ><a href="/fmis/records">FMIS</a></li>
+            <li><a href="/">Photo</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Other
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="divider"></li>
+                <li><a href="/react_index">React</a></li>
+<!--                 <li><a href="#">Jasper Report</a></li>
+                <li class="divider"></li>
+                <li><a href="#">另一个分离的链接</a></li> -->
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav user-bar navbar-right">
+            <% if current_user %>
+              <li><%= link_to('退出', destroy_user_session_path,:method => :delete) %></li>
+              <li><%= link_to('修改密码', edit_registration_path(:user)) %></li>
+              <li><a href="/">个人中心</a></li>
+            <% else %>
+              <li><%= link_to('注册', new_registration_path(:user)) %></li>
+              <li><%= link_to('登录', new_session_path(:user)) %></li>
+            <% end %>
+          </ul>
+          <ul class="nav navbar-nav user-bar navbar-right"> 
+            <li class="nav-search hidden-xs hidden-sm">
+                <form class="navbar-form form-search active" action="" method="GET">
+                  <div class="form-group">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </div>
+                  <input class="form-control search-query" name="index-search" type="text" value="<%= params[:q] %>" placeholder="搜索本站内容" onchange="indexSearch()" />
+                </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="content">
+      <div class="container pt15">
+        <div class="row">
+          <div class="col-md-12"></div>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
+    <footer class="footer text-center">
+      <span>痕迹风个人博客</span>
+      <a href="http://www.miitbeian.gov.cn/" target="_blank" class="text-muted">黔ICP备17011349号-1</a>
+<!--       <div class="music">
+        <embed    src="/music/Bdr first snow.mp3" width="300px" height="60px" autostart="false" align="absmiddle" border="1"/> 
+      </div> -->
+    </footer>
   </body>
 </html>
+

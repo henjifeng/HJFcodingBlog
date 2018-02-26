@@ -33,4 +33,9 @@ class User
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
+
+  # NoMethodError in Users::SessionsController#create
+  #undefined method `will_save_change_to_email?' for #<User:0x00007f5b083e1b78>
+  def will_save_change_to_email?
+  end
 end

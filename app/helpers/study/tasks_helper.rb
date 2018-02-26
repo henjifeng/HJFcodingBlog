@@ -1,0 +1,2 @@
+module Study::TasksHelper
+end

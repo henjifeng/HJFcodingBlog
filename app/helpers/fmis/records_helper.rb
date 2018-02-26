@@ -1,0 +1,2 @@
+module Fmis::RecordsHelper
+end

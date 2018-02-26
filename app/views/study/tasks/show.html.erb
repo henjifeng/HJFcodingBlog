@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @study_task.title %>
+</p>
+
+<p>
+  <strong>Important:</strong>
+  <%= @study_task.important %>
+</p>
+
+<%= link_to 'Edit', edit_study_task_path(@study_task) %> |
+<%= link_to 'Back', study_tasks_path %>

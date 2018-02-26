@@ -1,0 +1,27 @@
+<%= form_with(model: study_task, local: true) do |form| %>
+  <% if study_task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(study_task.errors.count, "error") %> prohibited this study_task from being saved:</h2>
+
+      <ul>
+      <% study_task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :study_task_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :important %>
+    <%= form.number_field :important, id: :study_task_important %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
