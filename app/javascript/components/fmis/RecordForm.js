@@ -57,7 +57,8 @@ class RecordForm extends Component {
     const data = {
       date: this.state.date,
       title: this.state.title,
-      amount: Number.parseInt(this.state.amount, 0), // 格式转化
+      amount: Number.parseFloat(this.state.amount), // 格式转化
+      // amount: Number.parseInt(this.state.amount, 0), // 格式转化
       // authenticity_token: $("meta[name=csrf-token]").attr("content")
       authenticity_token: RecordsAPI.get_authenticity_token()
 

@@ -80,7 +80,8 @@ export default class Record extends Component {
     const record = {
       date: this.refs.date.value,
       title: this.refs.title.value,
-      amount: Number.parseInt(this.refs.amount.value, 0), //服务器要的是整形
+      amount: Number.parseFloat(this.refs.amount.value), //服务器要的是整形
+      // amount: Number.parseInt(this.refs.amount.value, 0), //服务器要的是整形
       authenticity_token: RecordsAPI.get_authenticity_token()
     }
     RecordsAPI.updateRecord(this.props.record.id, record).then(
