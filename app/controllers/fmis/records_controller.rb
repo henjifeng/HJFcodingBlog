@@ -3,7 +3,7 @@ class Fmis::RecordsController < ApplicationController
 	before_action :set_fmis_record, only: [:update, :destroy]
 	#GET /fmis/records
 	def index
-		@records = ::Fmis::Record.where("author_id" => current_user.id.to_s)
+		@records = ::Fmis::Record.where("author_id" => current_user.id.to_s).asc(:date)
 		respond_to do |format|
 		    format.html { render :index}
 		    format.json { render json: format_index_data}
