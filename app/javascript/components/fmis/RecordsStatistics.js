@@ -38,13 +38,13 @@ export default class RecordsStatistics extends Component {
             	<tbody>
 	            	<tr>
 		            	<td>
-		            		<span>{totalAmount.income}</span>
+		            		<span>{totalAmount.income.toFixed(2)}</span>
 		            	</td>
 		            	<td>
-		            		<span>{totalAmount.expend}</span>
+		            		<span>{totalAmount.expend.toFixed(2)}</span>
 		            	</td>
 		            	<td>
-		            		<span>{totalAmount.income + totalAmount.expend}</span>
+		            		<span>{(totalAmount.income + totalAmount.expend).toFixed(2)}</span>
 		            	</td>
 		            </tr>
 		        </tbody>
